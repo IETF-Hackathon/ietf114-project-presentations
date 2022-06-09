@@ -9,8 +9,8 @@ The use of these templates is optional. If you do use one of these templates, pl
 To be added as a member, please be sure to:
 
 * include the [name](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/personalizing-your-profile#changing-your-profile-name) by which you are known as part of your in your GitHub profile 
-* enable two factor authentication [(2FA)](https://docs.github.com/en/github/authenticating-to-github/securing-your-account-with-two-factor-authentication-2fa)
-* send your GitHub user name to [hackathon-chairs@ietf.org](mailto:hackathon-chairs@ietf.org)
+* enable two-factor authentication [(2FA)](https://docs.github.com/en/github/authenticating-to-github/securing-your-account-with-two-factor-authentication-2fa)
+* send your GitHub username to [hackathon-chairs@ietf.org](mailto:hackathon-chairs@ietf.org)
 
 **DO NOT WAIT** until just before project presentations start or your request may be lost in the chaos.
 

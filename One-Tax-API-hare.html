@@ -40,7 +40,7 @@
     <textarea id="source">
 class: center, middle
 
-# IETF Hackathon
+# One Tax API
       
 IETF 114
       
@@ -53,95 +53,77 @@ Philadelphia, Pennsylvania
 
 # Hackathon Plan
 
-<What problem were you working on?>
-      - What drafts/RFC's were involved? 
-        * [Hare issues](https://todo.sr.ht/~sircmpwn/hare/178)
-	  - HKDF [RFC 5869](https://datatracker.ietf.org/doc/html/rfc5869)
-	  - AES/GCM [RFC 8452](https://datatracker.ietf.org/doc/html/rfc8452)
-	  - EdDSA [RFC 8032](https://datatracker.ietf.org/doc/html/rfc8032)
-      - Specific Problems
-      	* Implement encryption protocols in [Hare](https://harelang.org)
+- What drafts/RFC's were involved? 
+	- [Hare issues](https://todo.sr.ht/~sircmpwn/hare/178)
+		- HKDF [RFC 5869](https://datatracker.ietf.org/doc/html/rfc5869)
+		- AES-GCM [RFC 8452](https://datatracker.ietf.org/doc/html/rfc8452)?
+		- EdDSA [RFC 7748](https://datatracker.ietf.org/doc/html/rfc7748) and [RFC 8032](https://datatracker.ietf.org/doc/html/rfc8032)
+- Specific Problems
+	- Implement encryption protocols in [Hare](https://harelang.org)
         
-<How you planned to solve it?>
-       - Write some code
-
 <div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>       
 ---
 
 # What got done
         
-<What you achieved? (key results)>
-        - <New ideas - what team agreed on>
-        - <New code - links to github/gitlab/gitee/bitbucket>
-        - <New design/architecture - what was novel?>
-        - <New inter-op testing? - link to results>
-        - <Demos - links to videos>
-        
+- Ideas:
+	- Implement Ristretto in Hare, [currently in last call](https://datatracker.ietf.org/doc/draft-irtf-cfrg-ristretto255-decaf448/03/)
+	- Implement AES-GCM-SIV, [RFC-8452](https://datatracker.ietf.org/doc/html/rfc8452) in Hare
+- New code:
+	- Start adding Ed25519 [conformance tests](https://git.sr.ht/~bvkcm/hare/tree/ed25519_conformance/item/crypto/ed25519/%2Btest.ha) to Hare
+
 <div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>       
 ---
         
 # What we learned
 
-<Lessons learned from this hackathon>
-        - <Issues with existing drafts/RFCs>
-        - <New implementation guidance?>
-        - <New feedback to take to WG?>
-        - <New work to take to WG?>
+- Implemented in Hare
+	- [HKDF](https://git.sr.ht/~sircmpwn/hare/tree/master/item/crypto/hkdf)
+	- [Ed25519](https://git.sr.ht/~sircmpwn/hare/tree/master/item/crypto/ed25519)
+	- [Curve 25519](https://git.sr.ht/~sircmpwn/hare/tree/master/item/crypto/curve25519)
+- Several AES-GCM ciphers
+	- [AES-GCM](https://git.sr.ht/~sircmpwn/hare/tree/master/item/crypto/aes) implemented
+	- AES-GCM-SIV not yet implemented in Hare, example implementations
+		- [Rust](https://docs.rs/aes-gcm-siv/latest/aes_gcm_siv/)
+		- [C](https://github.com/Project-Opensource/AES-GCM-SIV)
+	- [Soatak](https://soatok.blog/2020/07/12/comparison-of-symmetric-encryption-methods/) summarizes that AES-GCM is faster than AES-GCM-SIV but less secure
+- Issues with existing drafts/RFCs
+	- [Chalkias, Garillot and Nikolaenko](https://eprint.iacr.org/2020/1244) suggest improvements to RFC 8032 to enable use in contract sigining, electronic voting and transactions 
+	- [Henry De Valence](https://zips.z.cash/zip-0215) suggests standardizing signature [validity rules](https://hdevalence.ca/blog/2020-10-04-its-25519am) for Ed25519
+	- Chalkias, Garillo and Nikolaenko's test vectors should be added to those specified in RFC 8032
         
 <div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>      
----
-  
-# Example slide with an image
-        
-<!-- .left[![Left-aligned image](https://upload.wikimedia.org/wikipedia/commons/b/b8/Muito_fixe.png)] --> 
-        
- <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Muito_fixe.png" alt="Computer network" width="300" height="400">
-        - Image sizing needs to be done in HTML at this point
 
-<div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>       
-        
----
-# Example slide with a video
-
-
-        
-<!-- <iframe src="https://player.vimeo.com/video/134243897" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/134243897">BarBoF on QUIC at the IETF in Prague 22/07/2015</a> from <a href="https://vimeo.com/user42239424">William Diego</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
-
- `<div style="position: relative; width: 50%; height: 0; padding-bottom: 37.5%;"><iframe src="https://player.bilibili.com/player.html?aid=412760976" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-<div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>  
 ---
  # Wrap up
   ---  
         
         
 .left-column[ 
-        #### Team members:
+#### Team members:
         
-        - A.Y. Zer
-        - P.O. Mta
+- Benson Muite
         
         ]
 .right-column[ 
-        #### Other links:
+#### Other links:
         
-        -
-        -
+- [noble-ed25519](https://github.com/paulmillr/noble-ed25519)
         
         ]
 
 .left-column[ 
-        #### First timers @ IETF/Hackathon:
-        
-        - B.H. Kot
-        - G.T. Dew
+#### First timers @ IETF/Hackathon:
+	
+-
+
         ]
 .right-column[ 
-        #### Notes and contacts:
+#### Notes and contacts:
         
-        -
-        -
-        ]
+- benson_muite at emailplus dot org
+        
+	]
 
 <div class="my-footer"><p>IETF Hackathon - One Tax API </p></div>
         

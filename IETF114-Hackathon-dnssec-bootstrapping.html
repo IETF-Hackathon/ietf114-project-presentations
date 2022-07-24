@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IETF Hackathon - DNSSEC Bootstrapping </title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      div.left-column  { width: 49%; float: left; }
+      div.right-column { width: 49%; float: right; }
+
+      div.right-column ~ p { clear: both; }
+      div.right-column ~ ul { clear: both; }
+      div.my-footer {
+        border-top: 1px solid #ccc;
+        font-size: 10pt;
+        text-align: center;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        height: 30px;
+        width: 100%;
+      }
+      
+      div.my-footer p {
+        margin-top: 10px;
+        height: 30px;
+      }
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# IETF Hackathon
+      
+IETF 114
+      
+23-24 July 2022
+
+Philadelphia, Pennsylvania
+
+      
+---
+
+# Hackathon Plan
+
+ - Draft: <a href="datatracker.ietf.org/doc/draft-ietf-dnsop-dnssec-bootstrapping/">draft-ietf-dnsop-dnssec-bootstrapping</a>
+
+ - Requires co-publishing the target zone's CDS/CDNSKEY records at a subdomain of the nameserver's hostname
+
+ - <u>Example</u>: Bootstrapping <code>example.co.uk</code> via <code>ns1.desec.io</code> requires:
+   <blockquote>
+     <code><i>_dsboot</i>.<b>example.co.uk</b>.<i>_signal</i>.<b>ns1.desec.io</b>. IN <b>CDS</b> ...</code>
+   </blockquote>
+   No automation so far.
+
+ - <u>Hackathon plan</u>: Automatically generate these records, either via
+   - period cronjob, or
+   - dynamic synthesis (by nameserver when queried)
+        
+<How you planned to solve it?>
+        
+<div class="my-footer"><p>IETF Hackathon - DNSSEC Bootstrapping </p></div>       
+---
+
+# What got done
+        
+ - Agreement: Expose only minimal configuration to admin
+   - Tagging a zone as "bootstrapping zone" enables synthesis for all managed zones
+
+ - Code (deployed):
+   - deployed:
+     - saltant.net: cronjob (catalog zone &rarr; bootstrap zone) (<a href="https://gitlab.com/neirbowj/ietf114-hackathon-dnssec-bootstrap">Gitlab repo</a>)
+     - at deSEC: PowerDNS record synthesis (<a href="https://github.com/desec-io/desec-ns/pull/46">deSEC PR #46</a>)
+   - in the works:
+     - Knot DNS module
+
+ - Techniques:
+   - cronjob: Python script
+   - PowerDNS: LUA records
+   - Knot DNS: native C module
+        
+<div class="my-footer"><p>IETF Hackathon - DNSSEC Bootstrapping </p></div>       
+---
+        
+# What we learned
+
+ - Pretty straightforward, plan worked overall
+
+ - Learned some things about LUA &ndash; good to have an expert at the table :-)
+
+ - <u>Unexpected insight</u>: bootstrap zones also have 2 NS records<br />&rarr; need to have them on two secondaries
+   - e.g. <code>_signal.ns1.desec.io</code> is hosted on ns1 <i>and</i> ns2
+
+ - Protocol seems workable in practice
+       
+<div class="my-footer"><p>IETF Hackathon - DNSSEC Bootstrapping </p></div>      
+---
+  
+# Video demo
+
+<iframe src="https://player.vimeo.com/video/732999113" width="760" height="420" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+<div class="my-footer"><p>IETF Hackathon - DNSSEC Bootstrapping </p></div>  
+---
+ # Wrap up
+  ---  
+        
+        
+.left-column[ 
+#### Team members:
+        
+Cronjob:
+ - John O'Brien
+
+PowerDNS synthesis:
+ - Jerry Lundström
+ - Nils Wisiol
+
+Knot DNS synthesis:
+ - Peter Thomassen
+        
+        ]
+
+.right-column[ 
+#### First timers @ IETF/Hackathon:
+        
+ - John O'Brien
+ - Nils Wisiol
+
+        ]
+
+<div class="my-footer"><p>IETF Hackathon - DNSSEC Bootstrapping </p></div>
+        
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
